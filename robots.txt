@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jjackk0k.github.io/moneytoolbox-site/sitemap.xml

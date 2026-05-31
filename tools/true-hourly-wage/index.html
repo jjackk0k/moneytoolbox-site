@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>True Hourly Wage Calculator — what you really earn per hour (free)</title>
+  <meta name="description" content="Free true hourly wage calculator. See what you actually earn per hour once unpaid overtime, commute time, and work costs are counted — not just salary ÷ contracted hours. No signup.">
+  <link rel="canonical" href="https://jjackk0k.github.io/moneytoolbox-site/tools/true-hourly-wage/">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"True Hourly Wage Calculator",
+   "applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0"},
+   "dateModified":"2026-05-31","isAccessibleForFree":true}
+  </script>
+</head>
+<body>
+  <header>
+    <a class="brand" href="../../">Money<span>Toolbox</span></a>
+    <nav class="nav"><a href="../../about/">About</a></nav>
+  </header>
+  <main>
+    <h1>True Hourly Wage</h1>
+    <p class="lead">"Salary ÷ 40 hours" is a fantasy. This counts the unpaid overtime, the commute, and the money
+    a job quietly costs you — to show what each hour of your life actually pays. Runs entirely in your browser.</p>
+
+    <div class="card">
+      <label for="gross">Gross annual pay ($)</label>
+      <input id="gross" type="number" min="0" step="1000" value="60000" inputmode="decimal">
+      <label for="hours">Contracted hours per week</label>
+      <input id="hours" type="number" min="1" step="1" value="40" inputmode="decimal">
+      <label for="extra">Extra unpaid hours per week (overtime, prep, after-hours email)</label>
+      <input id="extra" type="number" min="0" step="1" value="5" inputmode="decimal">
+      <label for="commuteMin">Commute minutes per day (round trip)</label>
+      <input id="commuteMin" type="number" min="0" step="5" value="60" inputmode="decimal">
+      <label for="commuteDays">Commute days per week</label>
+      <input id="commuteDays" type="number" min="0" max="7" step="1" value="5" inputmode="decimal">
+      <label for="weeks">Weeks worked per year (after holidays)</label>
+      <input id="weeks" type="number" min="1" max="52" step="1" value="48" inputmode="decimal">
+      <label for="costs">Annual work-related costs ($) — commuting, lunches, wardrobe, etc.</label>
+      <input id="costs" type="number" min="0" step="100" value="3000" inputmode="decimal">
+      <div style="margin-top:16px"><button class="btn-primary" id="calc" type="button">Calculate</button></div>
+    </div>
+
+    <div id="results" hidden>
+      <div class="card"><h2 style="margin-top:0">Result</h2><div id="summary"></div></div>
+      <div class="card">
+        <h2 style="margin-top:0">The breakdown</h2>
+        <table><tbody id="detail"></tbody></table>
+      </div>
+    </div>
+
+    <section class="card example">
+      <h3>A worked example</h3>
+      <p>A <strong>$60,000</strong> salary at 40 hours looks like <strong>~$31/hour</strong>. But add <strong>5
+      unpaid hours</strong> a week, a <strong>1-hour daily commute</strong>, and <strong>$3,000/year</strong> in
+      work costs, and the real figure drops to roughly <strong>$23/hour</strong> — about a quarter less. Two jobs
+      with the same salary can pay very different <em>real</em> wages once the hidden hours and costs are counted.</p>
+    </section>
+
+    <section class="card prose">
+      <h2 style="margin-top:0">How the math works</h2>
+      <p>The "paper" rate is <code>gross pay ÷ (contracted hours × weeks worked)</code>. The true rate is
+      <code>(gross pay − work costs) ÷ (all real hours × weeks worked)</code>, where real hours add your unpaid
+      overtime and commute time to the contracted hours. The idea — that you should value a job by the time and money
+      it really takes, not just the headline salary — comes from <em>Your Money or Your Life</em> (Vicki Robin &amp; Joe Dominguez).</p>
+      <p class="disclaimer">A simplified model: it doesn't deduct income tax (compare jobs pre-tax, or enter
+      after-tax pay in both fields) and treats weeks/costs as flat estimates. Educational tool, not financial advice.</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin-top:0">Common questions</h2>
+      <details><summary>Should I use pre-tax or after-tax pay?</summary>
+        <p>Either — just be consistent. For comparing two job offers, pre-tax is usually fine. To see real
+        take-home value, enter your after-tax pay.</p></details>
+      <details><summary>Why include the commute as "hours"?</summary>
+        <p>Because it's time you spend for the job that you wouldn't otherwise. Counting it often changes which of
+        two jobs is actually better paid per hour of your life.</p></details>
+      <details><summary>What counts as "work-related costs"?</summary>
+        <p>Anything you only pay because of the job: commuting/fuel/parking, work clothes, bought lunches, childcare
+        tied to work hours, etc. Estimate the yearly total.</p></details>
+      <details><summary>Do you store my numbers?</summary>
+        <p>No. Everything runs in your browser; nothing is sent anywhere, and there's no tracker on this page.</p></details>
+    </section>
+  </main>
+  <footer>
+    <p><a href="../../about/">About</a> · <a href="../../privacy/">Privacy</a> · <a href="https://github.com/jjackk0k/moneytoolbox-site/issues">Report a bug</a></p>
+    <p class="muted">Educational tool, not financial advice. Calculations last verified May 2026.</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
