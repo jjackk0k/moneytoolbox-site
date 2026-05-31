@@ -209,10 +209,29 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
   .reveal { opacity: 1; transform: none; }
 }
 
-/* print: legible light output of just the result + tool */
+/* print: a clean one-page report — just the headline + the result, nothing else */
 @media print {
-  :root { --bg:#fff; --cream:#111; --cream-soft:#222; --muted:#555; --panel:#fff; --bg-2:#fff; --line:#ccc; --brass:#7a5b13; --sage:#1f6b46; }
-  body { background: #fff !important; color: #111; }
-  header nav, footer, button, .share-row, .nav { display: none !important; }
-  .card { break-inside: avoid; box-shadow: none; }
+  :root { --bg:#fff; --bg-2:#fff; --panel:#fff; --cream:#111; --cream-soft:#222; --muted:#555;
+    --line:#d8d8d8; --line-strong:#bbb; --brass:#8a6312; --sage:#1f6b46; }
+  @page { margin: 1.6cm; }
+  body { background: #fff !important; color: #111; font-size: 12pt; }
+
+  /* hide everything that isn't the result */
+  header nav, .nav, footer, button, .share-row, .lead,
+  main > .card, main > section, #results details { display: none !important; }
+
+  /* keep a clean header just with the wordmark */
+  header { border-bottom: 1px solid #ccc; margin-bottom: 12px; padding-top: 0; }
+  .brand { color: #111; }
+  .brand::before { background: #8a6312; color: #fff; }
+
+  /* the result, always visible and tidy */
+  #results { opacity: 1 !important; transform: none !important; }
+  #results .card, .stat { background: #fff !important; border: 1px solid #ddd !important; box-shadow: none !important; break-inside: avoid; }
+  .stat::before { background: #8a6312 !important; }
+  .chart, .stats, .bar-row { break-inside: avoid; }
+
+  /* small report footer */
+  #results::after { content: "Generated with MoneyToolbox  ·  jjackk0k.github.io/moneytoolbox-site";
+    display: block; margin-top: 16px; padding-top: 8px; border-top: 1px solid #ddd; font-size: 9pt; color: #777; }
 }
