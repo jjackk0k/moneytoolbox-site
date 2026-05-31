@@ -178,6 +178,24 @@ footer a { color: var(--cream-soft); }
   background: var(--brass); cursor: pointer; border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--brass); }
 .slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--brass); cursor: pointer; border: 3px solid var(--bg); }
 
+/* custom number stepper — replaces the basic native spin arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+.num-wrap { position: relative; }
+.num-wrap input[type=number] { padding-right: 44px; }
+.stepper { position: absolute; top: 1px; right: 1px; bottom: 1px; width: 36px;
+  display: flex; flex-direction: column; border-left: 1px solid var(--line);
+  border-radius: 0 var(--radius) var(--radius) 0; overflow: hidden; }
+.stepper .step { flex: 1; min-height: 0; padding: 0; border: 0; cursor: pointer;
+  background: var(--bg-2); color: var(--brass); display: flex; align-items: center; justify-content: center;
+  transition: background .12s ease, color .12s ease; }
+.stepper .step.up { border-bottom: 1px solid var(--line); }
+.stepper .step:hover { background: var(--panel-2); color: var(--brass-bright); }
+.stepper .step:active { background: var(--brass); color: var(--bg); }
+.stepper .step svg { width: 13px; height: 13px; display: block; }
+.num-wrap input[type=number]:focus ~ .stepper { border-left-color: var(--brass); }
+
 /* result reveal animation */
 .reveal { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.in { opacity: 1; transform: none; }

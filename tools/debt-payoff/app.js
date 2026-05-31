@@ -54,6 +54,7 @@
     var node = wrap.firstChild;
     node.querySelector(".d-del").addEventListener("click", function () { node.remove(); });
     debtsEl.appendChild(node);
+    if (root.MTUI && root.MTUI.steppers) root.MTUI.steppers(node);
   }
   function readDebts() {
     return Array.prototype.slice.call(debtsEl.querySelectorAll(".debt-row")).map(function (r) {

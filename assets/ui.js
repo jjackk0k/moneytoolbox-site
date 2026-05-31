@@ -145,5 +145,39 @@
     num.addEventListener("input", function () { range.value = num.value; if (cb) cb(); });
   }
 
-  root.MTUI = { colors: C, reduce: reduce, countUp: countUp, lineChart: lineChart, bars: bars, bindShare: bindShare, syncSlider: syncSlider };
+  // Replace the basic native number-input spinners with custom brass up/down steppers.
+  var CHEV_UP = '<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 9L7 4.5L11.5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var CHEV_DOWN = '<svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function steppers(scope) {
+    scope = scope || document;
+    var inputs = scope.querySelectorAll("input[type=number]:not([data-stepped])");
+    Array.prototype.forEach.call(inputs, function (inp) {
+      inp.setAttribute("data-stepped", "1");
+      var wrap = document.createElement("div"); wrap.className = "num-wrap";
+      inp.parentNode.insertBefore(wrap, inp); wrap.appendChild(inp);
+      var st = document.createElement("div"); st.className = "stepper";
+      st.innerHTML = '<button type="button" class="step up" tabindex="-1" aria-label="Increase">' + CHEV_UP + '</button>' +
+                     '<button type="button" class="step down" tabindex="-1" aria-label="Decrease">' + CHEV_DOWN + '</button>';
+      wrap.appendChild(st);
+      function bump(dir) {
+        var step = parseFloat(inp.step) || 1, v = parseFloat(inp.value);
+        if (isNaN(v)) v = 0;
+        v = +(v + dir * step).toFixed(6);
+        if (inp.min !== "" && v < +inp.min) v = +inp.min;
+        if (inp.max !== "" && v > +inp.max) v = +inp.max;
+        inp.value = v;
+        inp.dispatchEvent(new Event("input", { bubbles: true }));
+        inp.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      st.querySelector(".up").addEventListener("click", function () { bump(1); });
+      st.querySelector(".down").addEventListener("click", function () { bump(-1); });
+    });
+  }
+
+  root.MTUI = { colors: C, reduce: reduce, countUp: countUp, lineChart: lineChart, bars: bars,
+                bindShare: bindShare, syncSlider: syncSlider, steppers: steppers };
+
+  function init() { try { steppers(document); } catch (e) {} }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })(typeof window !== "undefined" ? window : globalThis);
