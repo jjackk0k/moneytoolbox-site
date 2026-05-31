@@ -40,3 +40,30 @@ th { color: var(--muted); font-weight: 600; }
 footer { color: var(--muted); font-size: 13px; padding: 30px 20px 50px; border-top: 1px solid var(--line); margin-top: 40px; }
 .disclaimer { font-size: 12px; color: var(--muted); margin-top: 8px; }
 @media (max-width: 620px) { .debt-row { grid-template-columns: 1fr 1fr; } }
+
+/* --- header / nav --- */
+header { display: flex; align-items: center; justify-content: space-between; }
+.brand { text-decoration: none; color: var(--ink); }
+.nav a { font-size: 14px; text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--accent2); }
+
+/* --- hero gets its own treatment so the page isn't one uniform grid --- */
+.hero { padding: 18px 0 6px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.hero h1 { background: linear-gradient(90deg, var(--ink), #b9c6d3); -webkit-background-clip: text; background-clip: text; }
+
+/* --- tool cards: feature card is larger/accented, "soon" cards are quieter --- */
+.feature { border-left: 3px solid var(--accent); }
+.soon { opacity: .72; }
+.tag { display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: #04130a; background: var(--accent); padding: 2px 8px; border-radius: 20px; }
+.muted-tag { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+
+/* --- intentionally distinct callout blocks (breaks visual uniformity) --- */
+.note { border-left: 3px solid var(--accent2); background: #11161d; }
+.example { border-left: 3px solid var(--warn); background: #1a160f; }
+.example h3 { margin-top: 0; color: var(--warn); }
+details { border-bottom: 1px solid var(--line); padding: 10px 0; }
+details summary { cursor: pointer; font-weight: 600; }
+details p { color: var(--muted); margin: 8px 0 0; }
+.prose p { margin: 10px 0; }
+.prose code { background: #0b0f14; border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 13px; }

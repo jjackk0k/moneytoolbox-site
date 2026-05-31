@@ -3,20 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Debt Payoff Planner — Avalanche vs. Snowball Calculator (free)</title>
-  <meta name="description" content="Free debt payoff calculator. Compare the avalanche and snowball methods, see your payoff date, and how much interest each method saves. No signup.">
-  <link rel="canonical" href="https://example.com/tools/debt-payoff/">
+  <title>Debt Payoff Planner — Avalanche vs. Snowball Calculator (free, no signup)</title>
+  <meta name="description" content="Free debt payoff calculator. Compare avalanche vs. snowball, see your payoff date and the exact interest difference. The formula and a worked example are shown. No signup, nothing leaves your browser.">
+  <link rel="canonical" href="https://jjackk0k.github.io/moneytoolbox-site/tools/debt-payoff/">
   <link rel="stylesheet" href="../../assets/style.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Debt Payoff Planner",
-   "applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0"}}
+   "applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0"},
+   "dateModified":"2026-05-31","isAccessibleForFree":true}
   </script>
 </head>
 <body>
-  <header><div class="brand"><a href="../../" style="text-decoration:none;color:inherit">Money<span>Toolbox</span></a></div></header>
+  <header>
+    <a class="brand" href="../../">Money<span>Toolbox</span></a>
+    <nav class="nav"><a href="../../about/">About</a></nav>
+  </header>
   <main>
     <h1>Debt Payoff Planner</h1>
-    <p class="lead">List your debts and what you can pay each month. See which method — <strong>avalanche</strong> (highest rate first) or <strong>snowball</strong> (smallest balance first) — clears your debt faster and cheaper.</p>
+    <p class="lead">List your debts and what you can put toward them each month. You'll see which method —
+    <strong>avalanche</strong> (highest rate first) or <strong>snowball</strong> (smallest balance first) —
+    clears the debt faster and how much interest each one costs. Everything runs in your browser; your numbers are never sent anywhere.</p>
 
     <div class="card">
       <h2 style="margin-top:0">Your debts</h2>
@@ -45,22 +51,53 @@
         </table>
         <p class="muted" id="recommend"></p>
       </div>
-      <!-- Monetization slot: contextual offers (balance-transfer cards, consolidation loans).
-           Populated only with real, disclosed affiliate links once programs are joined. -->
       <div class="card affiliate-slot" id="offers" hidden></div>
     </div>
 
-    <div class="card">
-      <h2 style="margin-top:0">How it works</h2>
-      <p><strong>Avalanche:</strong> pay minimums on everything, then throw every extra dollar at the
-      <em>highest-APR</em> debt first. Mathematically saves the most interest.</p>
-      <p><strong>Snowball:</strong> attack the <em>smallest balance</em> first. Costs a little more
-      interest but gives faster wins, which helps many people stick with it.</p>
-      <p class="disclaimer">Estimates assume fixed APRs and on-time payments, interest compounded monthly.
-      Educational tool, not financial advice.</p>
-    </div>
+    <section class="card example">
+      <h3>A worked example</h3>
+      <p>Say you owe <strong>$6,000 on a card at 22.9%</strong> and <strong>$9,000 on a car loan at 7.5%</strong>,
+      and you can pay <strong>$600/month</strong> total. Avalanche attacks the 22.9% card first because that's where
+      interest piles up fastest. In this case avalanche clears everything in about the same time as snowball but
+      saves a few hundred dollars in interest — the gap grows the higher your worst APR is. Plug your own numbers in above to see your exact figures.</p>
+    </section>
+
+    <section class="card prose">
+      <h2 style="margin-top:0">How the math works</h2>
+      <p>Each month the calculator does four things, in order: adds one month of interest to every balance
+      (<code>balance × APR ÷ 12</code>), pays the minimum on each debt, then throws every remaining dollar of your
+      budget at one target debt, and repeats until everything hits zero.</p>
+      <p>The only difference between the two methods is <em>which debt gets the extra money</em>:</p>
+      <p><strong>Avalanche</strong> targets the <em>highest APR</em> first. Because interest is what makes debt
+      expensive, killing the priciest rate first always costs the least total interest — it's the mathematically optimal order.</p>
+      <p><strong>Snowball</strong> targets the <em>smallest balance</em> first. It usually costs a little more interest,
+      but you clear whole debts sooner, and those early wins are a big reason people actually stick with a payoff plan.
+      The U.S. Consumer Financial Protection Bureau covers both approaches here:
+      <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-the-best-way-to-pay-off-debt-en-1955/" rel="nofollow noopener" target="_blank">CFPB — ways to pay off debt</a>.</p>
+      <p class="disclaimer">Estimates assume fixed APRs, on-time payments, no new charges, and interest compounded
+      monthly. Real statements vary (daily compounding, fees, promotional rates). This is an educational tool, not financial advice.</p>
+    </section>
+
+    <section class="card">
+      <h2 style="margin-top:0">Common questions</h2>
+      <details><summary>Avalanche or snowball — which is actually better?</summary>
+        <p>Avalanche always costs less interest. Snowball gives faster psychological wins. If the interest gap is
+        small (the calculator tells you the exact number), pick whichever you'll stick with.</p></details>
+      <details><summary>Does this account for new charges on the card?</summary>
+        <p>No — it assumes you stop adding to the balances. New spending resets the math, so the plan works best
+        once you've paused new charges on the debts you're attacking.</p></details>
+      <details><summary>Why is this different from my bank's payoff figure?</summary>
+        <p>Banks often compound interest daily and add fees; this uses monthly compounding for clarity. Expect your
+        real payoff to be within a few dollars-per-month of this estimate, not identical.</p></details>
+      <details><summary>Do you store the numbers I enter?</summary>
+        <p>No. The whole calculation runs in your browser with JavaScript. Nothing is sent to a server — there isn't
+        even an analytics tracker on this page.</p></details>
+    </section>
   </main>
-  <footer><p>MoneyToolbox — educational tools, not financial advice.</p></footer>
+  <footer>
+    <p><a href="../../about/">About</a> · <a href="../../privacy/">Privacy</a> · <a href="https://github.com/jjackk0k/moneytoolbox-site/issues">Report a bug</a></p>
+    <p class="muted">Educational tool, not financial advice. Calculations last verified May 2026.</p>
+  </footer>
   <script src="app.js"></script>
 </body>
 </html>

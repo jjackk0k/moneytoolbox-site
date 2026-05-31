@@ -3,43 +3,61 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MoneyToolbox — free, no-signup money calculators</title>
-  <meta name="description" content="Free personal-finance calculators that actually work. No signup, no fluff. Debt payoff, compound interest, true hourly wage, and more.">
-  <link rel="canonical" href="https://example.com/">
+  <title>MoneyToolbox — free money calculators, no signup, no nonsense</title>
+  <meta name="description" content="A small set of free personal-finance calculators that just give you the answer. No signup, no email wall. Debt payoff, compound interest, and more — with the math shown.">
+  <link rel="canonical" href="https://jjackk0k.github.io/moneytoolbox-site/">
   <link rel="stylesheet" href="assets/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"MoneyToolbox",
+   "url":"https://jjackk0k.github.io/moneytoolbox-site/"}
+  </script>
 </head>
 <body>
   <header>
-    <div class="brand">Money<span>Toolbox</span></div>
+    <a class="brand" href="./">Money<span>Toolbox</span></a>
+    <nav class="nav"><a href="about/">About</a></nav>
   </header>
   <main>
-    <h1>Free money tools that actually work.</h1>
-    <p class="lead">No signup. No fluff. Just calculators that give you a straight answer — and stay correct, because they're re-checked automatically.</p>
+    <section class="hero">
+      <h1>Money math, minus the runaround.</h1>
+      <p class="lead">Most "free" calculators bury the answer behind a signup wall or six paragraphs of ads. These don't. Type your numbers, get a straight answer, see exactly how it was worked out. Nothing you enter ever leaves your browser.</p>
+    </section>
 
-    <h2>Tools</h2>
+    <h2>The tools</h2>
     <div class="grid">
       <a class="tool-link" href="tools/debt-payoff/">
-        <div class="card">
+        <div class="card feature">
           <h3>Debt Payoff Planner</h3>
-          <p>Avalanche vs. snowball — see which clears your debt faster and how much interest you save.</p>
+          <p>Avalanche vs. snowball — which clears your debt faster, and the exact dollar difference in interest. Shows the formula and a worked example.</p>
+          <span class="tag">Ready</span>
         </div>
       </a>
-      <div class="tool-link" aria-disabled="true">
-        <div class="card" style="opacity:.5">
-          <h3>Compound Interest Projector <span class="muted">(soon)</span></h3>
-          <p>See how savings and investments grow over time.</p>
+      <div class="tool-link">
+        <div class="card soon">
+          <h3>Compound Interest Projector</h3>
+          <p>Watch a one-off deposit and monthly contributions grow over the years.</p>
+          <span class="tag muted-tag">Building next</span>
         </div>
       </div>
-      <div class="tool-link" aria-disabled="true">
-        <div class="card" style="opacity:.5">
-          <h3>True Hourly Wage <span class="muted">(soon)</span></h3>
-          <p>What you really earn after commute, costs, and unpaid time.</p>
+      <div class="tool-link">
+        <div class="card soon">
+          <h3>True Hourly Wage</h3>
+          <p>What you actually earn once commute, costs, and unpaid hours are counted.</p>
+          <span class="tag muted-tag">Building next</span>
         </div>
       </div>
     </div>
+
+    <section class="card note">
+      <p><strong>Why this exists.</strong> I got tired of finance sites that hide a one-line answer
+      behind a wall of ads and an email signup. So this is the opposite: no signup, no tracking, and
+      the actual formula shown on every page so you can check it yourself. These are calculators, not
+      financial advice — and the numbers get re-verified regularly. <a href="about/">More on how it works →</a></p>
+    </section>
   </main>
   <footer>
-    <p>MoneyToolbox — educational tools, not financial advice. Built and maintained autonomously.</p>
+    <p><a href="about/">About</a> · <a href="privacy/">Privacy</a> · <a href="https://github.com/jjackk0k/moneytoolbox-site/issues">Report a bug</a></p>
+    <p class="muted">Educational tools, not financial advice. Last reviewed May 2026.</p>
   </footer>
 </body>
 </html>

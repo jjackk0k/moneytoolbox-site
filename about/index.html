@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About MoneyToolbox — why it exists and how the math is checked</title>
+  <meta name="description" content="MoneyToolbox is a small set of free, no-signup personal-finance calculators. Here's why it exists, how the calculations are verified, and what it is and isn't.">
+  <link rel="canonical" href="https://jjackk0k.github.io/moneytoolbox-site/about/">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="../">Money<span>Toolbox</span></a>
+    <nav class="nav"><a href="../">Tools</a></nav>
+  </header>
+  <main class="prose">
+    <h1>About</h1>
+    <p>MoneyToolbox is a small, growing set of free personal-finance calculators. The whole idea is
+    boring on purpose: <strong>type your numbers, get a straight answer, and see the formula that produced it.</strong></p>
+
+    <h2>Why it exists</h2>
+    <p>Most "free" finance calculators online do three annoying things — hide the real answer under a pile of
+    ads, gate it behind an email signup, or quietly send what you type to a server. This is the reaction to that.
+    No signup. No ad walls over the result. No analytics tracking. The math is shown on every tool so you can
+    check it against your own statement instead of trusting a black box.</p>
+
+    <h2>How the numbers are verified</h2>
+    <p>Every calculator's core math is covered by automated tests that run before anything goes live — for example,
+    the debt planner is checked against hand-computed cases (a 0% loan must pay off in exactly the expected number
+    of months; the avalanche method must never cost more interest than snowball). Tools also get re-checked on a
+    regular schedule, and each page shows when it was last verified. If you ever find a number that looks wrong,
+    please <a href="https://github.com/jjackk0k/moneytoolbox-site/issues" rel="noopener" target="_blank">open an issue</a> —
+    that's the fastest way to get it fixed.</p>
+
+    <h2>What this is, and isn't</h2>
+    <p>These are <strong>calculators, not financial advice.</strong> They make simplifying assumptions (fixed rates,
+    monthly compounding, no new charges or fees) that real-world accounts don't always follow, so treat the output as
+    a clear estimate to reason with — not a guarantee, and not a substitute for talking to a qualified professional
+    about your specific situation.</p>
+
+    <h2>Privacy in one sentence</h2>
+    <p>Everything runs in your browser; the numbers you enter are never sent anywhere.
+    <a href="../privacy/">Full privacy note →</a></p>
+  </main>
+  <footer>
+    <p><a href="../">Tools</a> · <a href="../privacy/">Privacy</a> · <a href="https://github.com/jjackk0k/moneytoolbox-site/issues">Report a bug</a></p>
+    <p class="muted">Educational tools, not financial advice. Last reviewed May 2026.</p>
+  </footer>
+</body>
+</html>
