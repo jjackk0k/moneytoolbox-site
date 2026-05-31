@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Debt Payoff Planner — Avalanche vs. Snowball Calculator (free)</title>
+  <meta name="description" content="Free debt payoff calculator. Compare the avalanche and snowball methods, see your payoff date, and how much interest each method saves. No signup.">
+  <link rel="canonical" href="https://example.com/tools/debt-payoff/">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Debt Payoff Planner",
+   "applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0"}}
+  </script>
+</head>
+<body>
+  <header><div class="brand"><a href="/" style="text-decoration:none;color:inherit">Money<span>Toolbox</span></a></div></header>
+  <main>
+    <h1>Debt Payoff Planner</h1>
+    <p class="lead">List your debts and what you can pay each month. See which method — <strong>avalanche</strong> (highest rate first) or <strong>snowball</strong> (smallest balance first) — clears your debt faster and cheaper.</p>
+
+    <div class="card">
+      <h2 style="margin-top:0">Your debts</h2>
+      <div class="debt-row muted" style="font-size:12px">
+        <div>Name</div><div>Balance ($)</div><div>APR (%)</div><div>Min payment ($)</div><div></div>
+      </div>
+      <div id="debts"></div>
+      <button class="btn-ghost" id="addDebt" type="button">+ Add debt</button>
+
+      <label for="budget">Total you can pay across all debts per month ($)</label>
+      <input id="budget" type="number" min="0" step="10" value="600" inputmode="decimal">
+
+      <div style="margin-top:16px"><button class="btn-primary" id="calc" type="button">Calculate</button></div>
+    </div>
+
+    <div id="results" hidden>
+      <div class="card">
+        <h2 style="margin-top:0">Result</h2>
+        <div id="summary"></div>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0">Side by side</h2>
+        <table>
+          <thead><tr><th>Method</th><th>Debt-free in</th><th>Total interest paid</th></tr></thead>
+          <tbody id="compare"></tbody>
+        </table>
+        <p class="muted" id="recommend"></p>
+      </div>
+      <!-- Monetization slot: contextual offers (balance-transfer cards, consolidation loans).
+           Populated only with real, disclosed affiliate links once programs are joined. -->
+      <div class="card affiliate-slot" id="offers" hidden></div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0">How it works</h2>
+      <p><strong>Avalanche:</strong> pay minimums on everything, then throw every extra dollar at the
+      <em>highest-APR</em> debt first. Mathematically saves the most interest.</p>
+      <p><strong>Snowball:</strong> attack the <em>smallest balance</em> first. Costs a little more
+      interest but gives faster wins, which helps many people stick with it.</p>
+      <p class="disclaimer">Estimates assume fixed APRs and on-time payments, interest compounded monthly.
+      Educational tool, not financial advice.</p>
+    </div>
+  </main>
+  <footer><p>MoneyToolbox — educational tools, not financial advice.</p></footer>
+  <script src="/tools/debt-payoff/app.js"></script>
+</body>
+</html>
