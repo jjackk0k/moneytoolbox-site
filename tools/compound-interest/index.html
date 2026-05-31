@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Compound Interest Projector — see your savings grow (free, no signup)</title>
-  <meta name="description" content="Free compound interest calculator with monthly contributions. See your future balance, how much you put in vs. how much growth added, year by year. No signup; nothing leaves your browser.">
+  <meta name="description" content="Free compound interest calculator with monthly contributions. Drag the sliders and watch the growth chart update live. See your future balance, your money vs. growth, year by year. No signup.">
   <link rel="canonical" href="https://jjackk0k.github.io/moneytoolbox-site/tools/compound-interest/">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/style.css">
@@ -21,30 +21,51 @@
   </header>
   <main>
     <h1>Compound Interest Projector</h1>
-    <p class="lead">See what a starting amount plus a steady monthly contribution could grow into — and how much
-    of the final number is your own money versus growth on top. Runs entirely in your browser.</p>
+    <p class="lead">A starting amount plus a steady monthly contribution, growing over time. Drag a slider and
+    watch it update live — and see how much of the final number is your money versus growth on top.</p>
 
     <div class="card">
       <label for="principal">Starting amount ($)</label>
       <input id="principal" type="number" min="0" step="100" value="1000" inputmode="decimal">
+
       <label for="monthly">Monthly contribution ($)</label>
       <input id="monthly" type="number" min="0" step="25" value="200" inputmode="decimal">
+
       <label for="rate">Annual return / interest rate (%)</label>
-      <input id="rate" type="number" min="0" step="0.1" value="7" inputmode="decimal">
+      <input id="rate" type="number" min="0" max="30" step="0.1" value="7" inputmode="decimal">
+      <input id="rateR" class="slider" type="range" min="0" max="15" step="0.1" value="7" aria-label="Rate slider">
+
       <label for="years">Years</label>
-      <input id="years" type="number" min="1" max="80" step="1" value="20" inputmode="decimal">
-      <div style="margin-top:16px"><button class="btn-primary" id="calc" type="button">Project it</button></div>
+      <input id="years" type="number" min="1" max="60" step="1" value="20" inputmode="decimal">
+      <input id="yearsR" class="slider" type="range" min="1" max="50" step="1" value="20" aria-label="Years slider">
     </div>
 
-    <div id="results" hidden>
-      <div class="card"><h2 style="margin-top:0">Result</h2><div id="summary"></div></div>
-      <div class="card">
-        <h2 style="margin-top:0">Year by year</h2>
-        <table>
-          <thead><tr><th>Year</th><th>Balance</th><th>You put in</th><th>Growth</th></tr></thead>
-          <tbody id="breakdown"></tbody>
-        </table>
+    <div id="results" class="reveal">
+      <div class="stats">
+        <div class="stat"><span class="k">Future value</span><span class="v brass" id="sFV">$0</span></div>
+        <div class="stat"><span class="k">You put in</span><span class="v" id="sIn">$0</span></div>
+        <div class="stat"><span class="k">Growth</span><span class="v sage" id="sGrow">$0</span></div>
       </div>
+
+      <div class="card">
+        <h2 style="margin-top:0">Growth over time</h2>
+        <svg class="chart" id="chart" height="240" role="img" aria-label="Chart of balance growing over time"></svg>
+        <div class="legend">
+          <span><i class="dot" style="background:#c9a24a"></i> Total balance</span>
+          <span><i class="dot" style="background:#c9bfa8"></i> What you contributed</span>
+        </div>
+      </div>
+
+      <div class="share-row">
+        <button class="btn-ghost" id="share" type="button">Copy shareable link</button>
+        <button class="btn-ghost" id="print" type="button">Print / save PDF</button>
+        <span class="hint">Nothing you enter is sent anywhere.</span>
+      </div>
+
+      <details style="margin-top:14px"><summary>See the year-by-year table</summary>
+        <table><thead><tr><th>Year</th><th>Balance</th><th>You put in</th><th>Growth</th></tr></thead>
+        <tbody id="breakdown"></tbody></table>
+      </details>
     </div>
 
     <section class="card example">
@@ -52,7 +73,7 @@
       <p>Start with <strong>$1,000</strong>, add <strong>$200/month</strong>, assume a <strong>7%</strong> annual
       return for <strong>20 years</strong>. You contribute $49,000 of your own money — but the balance lands
       around <strong>$105,000</strong>. The other ~$56,000 is growth, and most of it shows up in the later years.
-      That late-acceleration is the whole point of compounding: the earlier you start, the more of the work it does for you.</p>
+      That late acceleration is the whole point of compounding: the earlier you start, the more of the work it does for you.</p>
     </section>
 
     <section class="card prose">
@@ -62,15 +83,15 @@
       "Growth" is simply the final balance minus everything you put in.</p>
       <p>This is the standard future-value-of-a-series formula. The U.S. SEC's free tool uses the same approach:
       <a href="https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator" rel="nofollow noopener" target="_blank">Investor.gov compound interest calculator</a>.</p>
-      <p class="disclaimer">Assumes a constant rate compounded monthly and contributions at month-end. Real investment
-      returns vary year to year and aren't guaranteed; inflation and taxes reduce real-world results. Educational tool, not financial advice.</p>
+      <p class="disclaimer">Assumes a constant rate compounded monthly and contributions at month-end. Real returns vary
+      year to year and aren't guaranteed; inflation and taxes reduce real-world results. Educational tool, not financial advice.</p>
     </section>
 
     <section class="card">
       <h2 style="margin-top:0">Common questions</h2>
       <details><summary>What rate should I use?</summary>
         <p>For a diversified stock-market estimate, people often use 6–8% as a long-run average (before inflation).
-        For a savings account, use its APY. There's no "correct" number — try a few to see the range.</p></details>
+        For a savings account, use its APY. There's no "correct" number — drag the slider to see the range.</p></details>
       <details><summary>Is this before or after inflation?</summary>
         <p>Before. To see today's-dollars purchasing power, subtract your inflation assumption from the rate
         (e.g. enter 4% instead of 7% to roughly net out ~3% inflation).</p></details>
@@ -84,6 +105,7 @@
     <p><a href="../../about/">About</a> · <a href="../../privacy/">Privacy</a> · <a href="https://github.com/jjackk0k/moneytoolbox-site/issues">Report a bug</a></p>
     <p class="muted">Educational tool, not financial advice. Calculations last verified May 2026.</p>
   </footer>
+  <script src="../../assets/ui.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

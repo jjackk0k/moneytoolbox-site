@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Debt Payoff Planner — Avalanche vs. Snowball Calculator (free, no signup)</title>
-  <meta name="description" content="Free debt payoff calculator. Compare avalanche vs. snowball, see your payoff date and the exact interest difference. The formula and a worked example are shown. No signup, nothing leaves your browser.">
+  <meta name="description" content="Free debt payoff calculator. Watch your balance fall over time, compare avalanche vs. snowball, and see the exact interest difference and payoff date. No signup; nothing leaves your browser.">
   <link rel="canonical" href="https://jjackk0k.github.io/moneytoolbox-site/tools/debt-payoff/">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../assets/style.css">
@@ -21,9 +21,9 @@
   </header>
   <main>
     <h1>Debt Payoff Planner</h1>
-    <p class="lead">List your debts and what you can put toward them each month. You'll see which method —
-    <strong>avalanche</strong> (highest rate first) or <strong>snowball</strong> (smallest balance first) —
-    clears the debt faster and how much interest each one costs. Everything runs in your browser; your numbers are never sent anywhere.</p>
+    <p class="lead">List your debts and what you can put toward them each month. Watch the balance fall, and see which
+    method — <strong>avalanche</strong> (highest rate first) or <strong>snowball</strong> (smallest balance first) —
+    is faster and cheaper. Everything runs in your browser.</p>
 
     <div class="card">
       <h2 style="margin-top:0">Your debts</h2>
@@ -32,73 +32,84 @@
       </div>
       <div id="debts"></div>
       <button class="btn-ghost" id="addDebt" type="button">+ Add debt</button>
-
       <label for="budget">Total you can pay across all debts per month ($)</label>
       <input id="budget" type="number" min="0" step="10" value="600" inputmode="decimal">
-
       <div style="margin-top:16px"><button class="btn-primary" id="calc" type="button">Calculate</button></div>
     </div>
 
-    <div id="results" hidden>
-      <div class="card">
-        <h2 style="margin-top:0">Result</h2>
-        <div id="summary"></div>
+    <div id="results" class="reveal" hidden>
+      <div class="card"><div id="summary"></div></div>
+      <div id="viz">
+        <div class="stats">
+          <div class="stat"><span class="k">Debt-free in</span><span class="v brass" id="sFree">—</span></div>
+          <div class="stat"><span class="k">Interest — avalanche</span><span class="v" id="sAv">$0</span></div>
+          <div class="stat"><span class="k">Interest — snowball</span><span class="v" id="sSn">$0</span></div>
+          <div class="stat"><span class="k">You save (avalanche)</span><span class="v sage" id="sSave">$0</span></div>
+        </div>
+        <div class="card">
+          <h2 style="margin-top:0">Balance over time</h2>
+          <svg class="chart" id="chart" height="240" role="img" aria-label="Debt balance falling over time"></svg>
+          <div class="legend">
+            <span><i class="dot" style="background:#c9a24a"></i> Avalanche</span>
+            <span><i class="dot" style="background:#8fb79c"></i> Snowball</span>
+          </div>
+          <p class="muted" style="font-size:13px;margin:4px 0 0">Months along the bottom.</p>
+        </div>
+        <div class="card">
+          <h2 style="margin-top:0">Interest you'll pay</h2>
+          <div id="bars"></div>
+          <p class="muted" id="recommend" style="margin-top:10px"></p>
+        </div>
+        <div class="card affiliate-slot" id="offers" hidden></div>
+        <div class="share-row">
+          <button class="btn-ghost" id="share" type="button">Copy shareable link</button>
+          <button class="btn-ghost" id="print" type="button">Print / save PDF</button>
+          <span class="hint">Nothing you enter is sent anywhere.</span>
+        </div>
       </div>
-      <div class="card">
-        <h2 style="margin-top:0">Side by side</h2>
-        <table>
-          <thead><tr><th>Method</th><th>Debt-free in</th><th>Total interest paid</th></tr></thead>
-          <tbody id="compare"></tbody>
-        </table>
-        <p class="muted" id="recommend"></p>
-      </div>
-      <div class="card affiliate-slot" id="offers" hidden></div>
     </div>
 
     <section class="card example">
       <h3>A worked example</h3>
       <p>Say you owe <strong>$6,000 on a card at 22.9%</strong> and <strong>$9,000 on a car loan at 7.5%</strong>,
       and you can pay <strong>$600/month</strong> total. Avalanche attacks the 22.9% card first because that's where
-      interest piles up fastest. In this case avalanche clears everything in about the same time as snowball but
-      saves a few hundred dollars in interest — the gap grows the higher your worst APR is. Plug your own numbers in above to see your exact figures.</p>
+      interest piles up fastest — clearing everything in around the same time as snowball but saving a few hundred
+      dollars in interest. The gap grows the higher your worst APR is. Plug your own numbers in above.</p>
     </section>
 
     <section class="card prose">
       <h2 style="margin-top:0">How the math works</h2>
-      <p>Each month the calculator does four things, in order: adds one month of interest to every balance
-      (<code>balance × APR ÷ 12</code>), pays the minimum on each debt, then throws every remaining dollar of your
-      budget at one target debt, and repeats until everything hits zero.</p>
-      <p>The only difference between the two methods is <em>which debt gets the extra money</em>:</p>
-      <p><strong>Avalanche</strong> targets the <em>highest APR</em> first. Because interest is what makes debt
-      expensive, killing the priciest rate first always costs the least total interest — it's the mathematically optimal order.</p>
-      <p><strong>Snowball</strong> targets the <em>smallest balance</em> first. It usually costs a little more interest,
-      but you clear whole debts sooner, and those early wins are a big reason people actually stick with a payoff plan.
-      The U.S. Consumer Financial Protection Bureau covers both approaches here:
+      <p>Each month the calculator adds one month of interest to every balance (<code>balance × APR ÷ 12</code>),
+      pays the minimum on each debt, then throws every remaining dollar of your budget at one target debt, and repeats
+      until everything hits zero.</p>
+      <p>The only difference between the two methods is <em>which debt gets the extra money</em>:
+      <strong>avalanche</strong> targets the <em>highest APR</em> (mathematically the least total interest);
+      <strong>snowball</strong> targets the <em>smallest balance</em> (slightly more interest, but faster wins that
+      help people stick with it). The U.S. Consumer Financial Protection Bureau covers both:
       <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-the-best-way-to-pay-off-debt-en-1955/" rel="nofollow noopener" target="_blank">CFPB — ways to pay off debt</a>.</p>
       <p class="disclaimer">Estimates assume fixed APRs, on-time payments, no new charges, and interest compounded
-      monthly. Real statements vary (daily compounding, fees, promotional rates). This is an educational tool, not financial advice.</p>
+      monthly. Real statements vary (daily compounding, fees, promo rates). Educational tool, not financial advice.</p>
     </section>
 
     <section class="card">
       <h2 style="margin-top:0">Common questions</h2>
       <details><summary>Avalanche or snowball — which is actually better?</summary>
-        <p>Avalanche always costs less interest. Snowball gives faster psychological wins. If the interest gap is
-        small (the calculator tells you the exact number), pick whichever you'll stick with.</p></details>
+        <p>Avalanche always costs less interest. Snowball gives faster psychological wins. If the gap is small (the
+        tool tells you the exact number), pick whichever you'll stick with.</p></details>
       <details><summary>Does this account for new charges on the card?</summary>
-        <p>No — it assumes you stop adding to the balances. New spending resets the math, so the plan works best
-        once you've paused new charges on the debts you're attacking.</p></details>
+        <p>No — it assumes you stop adding to the balances. New spending resets the math.</p></details>
       <details><summary>Why is this different from my bank's payoff figure?</summary>
-        <p>Banks often compound interest daily and add fees; this uses monthly compounding for clarity. Expect your
-        real payoff to be within a few dollars-per-month of this estimate, not identical.</p></details>
+        <p>Banks often compound daily and add fees; this uses monthly compounding for clarity. Expect your real
+        payoff to be within a few dollars-per-month of this estimate.</p></details>
       <details><summary>Do you store the numbers I enter?</summary>
-        <p>No. The whole calculation runs in your browser with JavaScript. Nothing is sent to a server — there isn't
-        even an analytics tracker on this page.</p></details>
+        <p>No. The whole calculation runs in your browser; nothing is sent to a server, and there's no tracker.</p></details>
     </section>
   </main>
   <footer>
     <p><a href="../../about/">About</a> · <a href="../../privacy/">Privacy</a> · <a href="https://github.com/jjackk0k/moneytoolbox-site/issues">Report a bug</a></p>
     <p class="muted">Educational tool, not financial advice. Calculations last verified May 2026.</p>
   </footer>
+  <script src="../../assets/ui.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
