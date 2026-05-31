@@ -66,7 +66,7 @@
   }
 
   ["gross", "hours", "extra", "commuteMin", "commuteDays", "weeks", "costs"].forEach(function (id) { $(id).addEventListener("input", render); });
-  $("print").addEventListener("click", function () { window.print(); });
+  var pr = $("print"); if (pr) pr.addEventListener("click", function () { window.print(); });
   if (root.MTUI) {
     var restore = root.MTUI.bindShare({ gross: 1, hours: 1, extra: 1, commuteMin: 1, commuteDays: 1, weeks: 1, costs: 1 }, $("share"));
     restore();

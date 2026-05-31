@@ -61,11 +61,14 @@
       labels: labels, formatY: moneyShort
     });
 
-    var rows = r.byYear.filter(function (y) { return y.year <= 10 || y.year % 5 === 0 || y.year === years; });
-    $("breakdown").innerHTML = rows.map(function (y) {
-      return "<tr><td>" + y.year + "</td><td>" + moneyFull(y.balance) + "</td><td>" + moneyFull(y.contributed) +
-        "</td><td class='win'>" + moneyFull(y.interest) + "</td></tr>";
-    }).join("");
+    var bd = $("breakdown");
+    if (bd) {
+      var rows = r.byYear.filter(function (y) { return y.year <= 10 || y.year % 5 === 0 || y.year === years; });
+      bd.innerHTML = rows.map(function (y) {
+        return "<tr><td>" + y.year + "</td><td>" + moneyFull(y.balance) + "</td><td>" + moneyFull(y.contributed) +
+          "</td><td class='win'>" + moneyFull(y.interest) + "</td></tr>";
+      }).join("");
+    }
 
     if (first) { requestAnimationFrame(function () { $("results").classList.add("in"); }); first = false; }
   }
@@ -82,7 +85,7 @@
     var restore = root.MTUI.bindShare({ principal: 1, monthly: 1, rate: 1, years: 1 }, $("share"));
     if (restore()) { $("rateR").value = $("rate").value; $("yearsR").value = $("years").value; }
   }
-  $("print").addEventListener("click", function () { window.print(); });
+  var pr = $("print"); if (pr) pr.addEventListener("click", function () { window.print(); });
 
   render();
 })(typeof window !== "undefined" ? window : globalThis);

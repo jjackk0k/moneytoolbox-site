@@ -178,6 +178,23 @@
   root.MTUI = { colors: C, reduce: reduce, countUp: countUp, lineChart: lineChart, bars: bars,
                 bindShare: bindShare, syncSlider: syncSlider, steppers: steppers };
 
-  function init() { try { steppers(document); } catch (e) {} }
+  // Wire any <button data-copy="#selector"> to copy that element's value/text to the clipboard.
+  function wireCopies(scope) {
+    var btns = (scope || document).querySelectorAll("[data-copy]:not([data-copywired])");
+    Array.prototype.forEach.call(btns, function (btn) {
+      btn.setAttribute("data-copywired", "1");
+      btn.addEventListener("click", function () {
+        var target = document.querySelector(btn.getAttribute("data-copy"));
+        if (!target) return;
+        var text = (target.value !== undefined && target.value !== null) ? target.value : target.textContent;
+        var done = function () { var o = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(function () { btn.textContent = o; }, 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done);
+        else { try { target.select && target.select(); document.execCommand("copy"); } catch (e) {} done(); }
+      });
+    });
+  }
+  root.MTUI.wireCopies = wireCopies;
+
+  function init() { try { steppers(document); wireCopies(document); } catch (e) {} }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })(typeof window !== "undefined" ? window : globalThis);

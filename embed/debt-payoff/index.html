@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Debt Payoff Planner — MoneyToolbox widget</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body class="embed">
+  <main>
+    <div class="card">
+      <div class="debt-row muted" style="font-size:12px">
+        <div>Name</div><div>Balance ($)</div><div>APR (%)</div><div>Min ($)</div><div></div>
+      </div>
+      <div id="debts"></div>
+      <button class="btn-ghost" id="addDebt" type="button">+ Add debt</button>
+      <label for="budget">Total monthly payment ($)</label>
+      <input id="budget" type="number" min="0" step="10" value="600" inputmode="decimal">
+      <div style="margin-top:14px"><button class="btn-primary" id="calc" type="button">Calculate</button></div>
+    </div>
+    <div id="results" class="reveal" hidden>
+      <div class="card"><div id="summary"></div></div>
+      <div id="viz">
+        <div class="stats">
+          <div class="stat"><span class="k">Debt-free in</span><span class="v brass" id="sFree">—</span></div>
+          <div class="stat"><span class="k">Interest — avalanche</span><span class="v" id="sAv">$0</span></div>
+          <div class="stat"><span class="k">Interest — snowball</span><span class="v" id="sSn">$0</span></div>
+          <div class="stat"><span class="k">You save</span><span class="v sage" id="sSave">$0</span></div>
+        </div>
+        <div class="card">
+          <svg class="chart" id="chart" height="200" role="img" aria-label="Debt balance over time"></svg>
+          <div class="legend">
+            <span><i class="dot" style="background:#c9a24a"></i> Avalanche</span>
+            <span><i class="dot" style="background:#8fb79c"></i> Snowball</span>
+          </div>
+          <p class="muted" style="font-size:12px;margin:4px 0 0">Months along the bottom.</p>
+        </div>
+        <div class="card"><div id="bars"></div><p class="muted" id="recommend" style="margin-top:10px"></p></div>
+      </div>
+    </div>
+    <a class="attrib" href="../../tools/debt-payoff/" target="_blank" rel="noopener">Debt Payoff Planner by <b>MoneyToolbox</b> ↗</a>
+  </main>
+  <script src="../../assets/ui.js"></script>
+  <script src="../../tools/debt-payoff/app.js"></script>
+</body>
+</html>

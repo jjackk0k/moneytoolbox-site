@@ -121,7 +121,7 @@
   }
 
   $("calc").addEventListener("click", calc);
-  $("print").addEventListener("click", function () { window.print(); });
+  var pr = $("print"); if (pr) pr.addEventListener("click", function () { window.print(); });
   if (root.MTUI) root.MTUI.bindShare({ budget: 1 }, $("share"));
   calc();
 })(typeof window !== "undefined" ? window : globalThis);

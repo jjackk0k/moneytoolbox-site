@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>True Hourly Wage — MoneyToolbox widget</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body class="embed">
+  <main>
+    <div class="card">
+      <label for="gross">Gross annual pay ($)</label>
+      <input id="gross" type="number" min="0" step="1000" value="60000" inputmode="decimal">
+      <label for="hours">Contracted hours / week</label>
+      <input id="hours" type="number" min="1" step="1" value="40" inputmode="decimal">
+      <label for="extra">Extra unpaid hours / week</label>
+      <input id="extra" type="number" min="0" step="1" value="5" inputmode="decimal">
+      <label for="commuteMin">Commute minutes / day (round trip)</label>
+      <input id="commuteMin" type="number" min="0" step="5" value="60" inputmode="decimal">
+      <label for="commuteDays">Commute days / week</label>
+      <input id="commuteDays" type="number" min="0" max="7" step="1" value="5" inputmode="decimal">
+      <label for="weeks">Weeks worked / year</label>
+      <input id="weeks" type="number" min="1" max="52" step="1" value="48" inputmode="decimal">
+      <label for="costs">Annual work-related costs ($)</label>
+      <input id="costs" type="number" min="0" step="100" value="3000" inputmode="decimal">
+    </div>
+    <div id="results" class="reveal" hidden>
+      <div class="card"><div id="summary"></div></div>
+      <div class="stats">
+        <div class="stat"><span class="k">True hourly</span><span class="v brass" id="sTrue">$0</span></div>
+        <div class="stat"><span class="k">On paper</span><span class="v" id="sPaper">$0</span></div>
+        <div class="stat"><span class="k">Real hrs / yr</span><span class="v" id="sHours">0</span></div>
+        <div class="stat"><span class="k">Pay cut, hidden</span><span class="v sage" id="sGap">0% less</span></div>
+      </div>
+      <div class="card"><div id="bars"></div></div>
+    </div>
+    <a class="attrib" href="../../tools/true-hourly-wage/" target="_blank" rel="noopener">True Hourly Wage by <b>MoneyToolbox</b> ↗</a>
+  </main>
+  <script src="../../assets/ui.js"></script>
+  <script src="../../tools/true-hourly-wage/app.js"></script>
+</body>
+</html>
